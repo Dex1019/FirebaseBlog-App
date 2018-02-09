@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context="com.example.dex.firebaseblog.SetupActivity">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/setupImgBtn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/person" />
+
+    <EditText
+        android:id="@+id/setupNameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setupImgBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/input_outline"
+        android:hint="Enter your display name"
+        android:padding="10dp" />
+
+
+    <Button
+        android:id="@+id/setupSubmitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Setup profile"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+</RelativeLayout>
