@@ -113,76 +113,82 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull BlogViewHolder viewHolder, int position, @NonNull Blog model) {
 
-                final String post_key = getRef(position).getKey();
+                try {
+                    final String post_key = getRef(position).getKey();
 
-                String current_UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String current_UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                String user_uid = model.getUid().toString();
+                    String user_uid = model.getUid().toString();
 
 
 //                viewHolder.setDesc(model.getDesc());
-                viewHolder.setTitle(model.getTitle());
-                viewHolder.setImage(getApplicationContext(), model.getImage());
-                viewHolder.setUserName(model.getUsername());
+                    viewHolder.setTitle(model.getTitle());
+                    viewHolder.setImage(getApplicationContext(), model.getImage());
+                    viewHolder.setUserName(model.getUsername());
 
-                viewHolder.setLikeBtn(post_key);
+                    viewHolder.setLikeBtn(post_key);
 
-                viewHolder.setUserProfile(getApplicationContext(), current_UserId, user_uid);
-
-
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        Intent singleBlogIntent = new Intent(MainActivity.this, SingleBlogActivity.class);
-                        singleBlogIntent.putExtra("blog_id", post_key);
-                        startActivity(singleBlogIntent);
-
-                    }
-                });
+                    viewHolder.setUserProfile(getApplicationContext(), current_UserId, user_uid);
 
 
-                viewHolder.mLikeBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                        mProcessLike = true;
+                            Intent singleBlogIntent = new Intent(MainActivity.this, SingleBlogActivity.class);
+                            singleBlogIntent.putExtra("blog_id", post_key);
+                            startActivity(singleBlogIntent);
 
-                        mDatabaseLike.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                        }
+                    });
 
-                                if (mProcessLike) {
 
-                                    if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
+                    viewHolder.mLikeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                                        mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid())
-                                                .removeValue();
+                            mProcessLike = true;
 
-                                        mProcessLike = false;
+                            mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                    } else {
-                                        mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid())
-                                                .setValue("Random value");
+                                    if (mProcessLike) {
 
-                                        mProcessLike = false;
+                                        if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
+
+                                            mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid())
+                                                    .removeValue();
+
+                                            mProcessLike = false;
+
+                                        } else {
+                                            mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid())
+                                                    .setValue("Random value");
+
+                                            mProcessLike = false;
+                                        }
+
+
                                     }
+                                }
 
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
                                 }
-                            }
+                            });
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }
+                        }
 
 
-                });
+                    });
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
             }
+
 
             @Override
             public BlogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

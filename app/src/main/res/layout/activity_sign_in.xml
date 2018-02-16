@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-
     tools:context="com.example.dex.firebaseblog.SignInActivity">
 
     <!--<EditText-->
@@ -58,15 +57,6 @@
         android:layout_marginTop="64dp"
         android:src="@drawable/firebase_logo" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/google_signInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-
-        android:layout_margin="16dp">
-
-    </com.google.android.gms.common.SignInButton>
 
     <TextView
         android:id="@+id/textView"
@@ -80,6 +70,26 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/google_signInBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Need An account ?" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_signInBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp">
+
+    </com.google.android.gms.common.SignInButton>
 
 
 </RelativeLayout>

@@ -9,8 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +30,9 @@ public class SingleBlogActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     private ImageView mSingleBlogImage;
-    private TextView mSingleTitle, mSingleDesc;
+    private EditText mSingleTitle, mSingleDesc;
     private Button mRemoveBtn;
+    private Button mUpdateBtn;
 
     private FirebaseAuth mAuth;
 
@@ -54,6 +56,7 @@ public class SingleBlogActivity extends AppCompatActivity {
         mSingleTitle = findViewById(R.id.single_postTitle);
         mSingleDesc = findViewById(R.id.single_postDesc);
         mRemoveBtn = findViewById(R.id.single_removeBtn);
+        mUpdateBtn = findViewById(R.id.single_updateBtn);
 
         mRemoveBtn.setVisibility(View.INVISIBLE);
 
@@ -144,6 +147,16 @@ public class SingleBlogActivity extends AppCompatActivity {
 
             }
         });
+
+        mUpdateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(SingleBlogActivity.this, "Update Post", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
     }
 
 
@@ -156,6 +169,16 @@ public class SingleBlogActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        if (item.getItemId() == R.id.action_logout) {
+            logout();
+        }
+
+
+        if (item.getItemId() == R.id.action_profile) {
+            startActivity(new Intent(SingleBlogActivity.this, SetupActivity.class));
+        }
 
 
         if (item.getItemId() == R.id.action_logout) {

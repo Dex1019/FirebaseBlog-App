@@ -63,7 +63,7 @@ public class SignInActivity extends AppCompatActivity {
 //        mLoginPassword = findViewById(R.id.et_LoginPasssword);
 //
 //        btn_signIn = findViewById(R.id.btn_login);
-//        btn_register = findViewById(R.id.btn_register);
+        btn_register = findViewById(R.id.signUpBtn);
         mGoogleBtn = findViewById(R.id.google_signInBtn);
 
 //        btn_signIn.setOnClickListener(new View.OnClickListener() {
@@ -73,12 +73,12 @@ public class SignInActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        btn_register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
-//            }
-//        });
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+            }
+        });
 
 // -------Google SignIn------------
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

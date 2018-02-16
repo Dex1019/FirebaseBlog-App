@@ -3,69 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:background="#fff"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
-    app:cardCornerRadius="5dp">
+    app:cardElevation="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-
             android:id="@+id/layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="2dp">
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/post_profilePic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/person"
-                app:civ_border_color="#EEEEEE"
-                app:civ_border_width="2dp"
-                app:civ_shadow="true"
-                app:civ_shadow_color="#8BC34A"
-                app:civ_shadow_radius="2" />
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/person" />
 
             <TextView
                 android:id="@+id/post_userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toRightOf="@id/post_profilePic"
-                android:gravity="start"
-                android:paddingLeft="10dp"
+                android:layout_alignTop="@+id/post_profilePic"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/post_profilePic"
                 android:text="UserName"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/time_logo" />
 
             <TextView
                 android:id="@+id/post_dateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="12dp"
-                android:layout_toStartOf="@+id/imageView2"
-                android:text="8 Feb"
-                android:textSize="16sp" />
+                android:layout_alignStart="@+id/post_userName"
+                android:layout_below="@+id/post_userName"
+                android:text="Feb 8, 2018"
+                android:textSize="14sp" />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/imageView2"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:src="@drawable/time_logo" />-->
 
 
         </RelativeLayout>
@@ -74,8 +67,7 @@
             android:id="@+id/layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout1"
-            android:orientation="horizontal">
+            android:layout_below="@id/layout1">
 
             <ImageView
                 android:id="@+id/post_image"
@@ -90,57 +82,71 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true" />
 
-
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:id="@+id/layout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/layout2">
 
+            <TextView
+                android:id="@+id/post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:padding="5dp"
+                android:paddingStart="20dp"
+                android:text="Post title display here"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout3"
+            android:layout_marginBottom="10dp">
+
             <ImageView
                 android:id="@+id/post_likeBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:paddingLeft="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
                 android:src="@drawable/like" />
 
             <TextView
                 android:id="@+id/post_likesCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/post_likeBtn"
-                android:text="150"
+                android:layout_toRightOf="@id/post_likeBtn"
+                android:text="10"
                 android:textSize="16sp" />
 
+            <ImageView
+                android:id="@+id/post_comment"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/post_commentCount"
+                android:src="@drawable/ic_comment" />
+
             <TextView
-                android:id="@+id/post_title"
+                android:id="@+id/post_commentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/post_likesCount"
-                android:paddingStart="10dp"
-
-                android:paddingTop="5dp"
-                android:text="Post title display here"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!--<TextView-->
-            <!--android:id="@+id/post_desc"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/post_title"-->
-            <!--android:paddingLeft="10dp"-->
-            <!--android:layout_toRightOf="@id/post_likeBtn"-->
-            <!--android:text="Post description display here"-->
-            <!--android:textSize="16sp" />-->
+                android:layout_alignBaseline="@+id/post_likesCount"
+                android:layout_alignBottom="@+id/post_likesCount"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
+                android:text="10"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 

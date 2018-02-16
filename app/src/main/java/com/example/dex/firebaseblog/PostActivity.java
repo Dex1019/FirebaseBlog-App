@@ -28,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class PostActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int GALLRY_REQUEST_CODE = 1;
@@ -79,10 +81,34 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
         if (requestCode == GALLRY_REQUEST_CODE && resultCode == RESULT_OK) {
 
-            mImageUri = data.getData();
+//            mImageUri = data.getData();
+//            mSelectImage.setImageURI(mImageUri);
 
-            mSelectImage.setImageURI(mImageUri);
+            Uri imageUri = data.getData();
+
+            CropImage.activity(imageUri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1, 1)
+                    .start(this);
+
+
         }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK) {
+
+                mImageUri = result.getUri();
+
+                mSelectImage.setImageURI(mImageUri);
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+
+                Exception error = result.getError();
+            }
+        }
+
+
     }
 
 

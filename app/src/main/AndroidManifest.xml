@@ -36,7 +36,9 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SingleBlogActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>
